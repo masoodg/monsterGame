@@ -18,5 +18,6 @@ Use the bonus to get free score!
 
 2. Launch sbt and run program:
 
-        2.1: cd scala-sbt-template
-        2.2: sbt run
+        2.1: Full screen your terminal
+        2.2: cd scala-sbt-template
+        2.3: sbt run
