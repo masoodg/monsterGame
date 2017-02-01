@@ -1,28 +1,46 @@
-/*
- * Copyright 2012 Damian Helme
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-   
-   */
 package com.mycode
 
-import org.scalatest.FunSuite
- class AppTest extends FunSuite {
-  
-  test("list length") {
-    assertResult(3) {
-      App.listLength(List(1,2,3))
-    }
+
+import org.scalatest._
+
+class AppTest extends FlatSpec with Matchers {
+
+  "An initialized game" should "have proper initialized values" in {
+
+    App.newGame(Option("mynickname"))
+    assert(App.nickname == "mynickname")
+    assert(App.initialBoard.gameBoard.length == App.initialRow)
+  }
+
+  "Move commands" should "move the position of player" in {
+
+    App.newGame(Option("testCharacter"))
+    App.runGame(Option(Array("d", "s", "d", "save", "d", "d", "exit")))
+    assert(App.currentBoard.currentPosition() == (1, 4))
+
+  }
+
+  "Load a game" should "load the correct state" in {
+    App.startMenu(Option("2", null))
+    assert(App.currentBoard.currentPosition() == (1, 2))
+
+  }
+
+  "game state" should "get won, when score is enough" in {
+
+    App.score = 100
+    App.updateStatus()
+    assert(App.gameState == "WON")
+
+  }
+
+  "game state" should "get game_over, when score is few" in {
+
+    App.score = -100
+    App.updateStatus()
+    assert(App.gameState == "GAME_OVER")
+
   }
 }
 	
