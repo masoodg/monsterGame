@@ -1,7 +1,5 @@
 package com.mycode
 
-import java.io.ByteArrayInputStream
-
 import scala.sys.process._
 
 object App {
@@ -10,10 +8,10 @@ object App {
   var gameState = "RUNNING"
   var score, i, j = 0
   val initialRow, initialCol = 15
-  val gameOverScore = -3
-  val winScore = 15
-  var flag = true
-  var msg, nickname, colour: String = ""
+  private val gameOverScore = -3
+  private val winScore = 15
+  private var flag = true
+  var msg, nickname: String = ""
   var currentBoard, initialBoard = new Board(1, 1)
 
 
@@ -22,7 +20,7 @@ object App {
     board.printBoard(nickname, score, msg)
   }
 
-  def startMenu(manualMenu: Option[(String, String)] ): Unit = {
+  def startMenu(manualMenu: Option[(String, String)]): Unit = {
 
     val menuCommand = manualMenu match {
       case Some(x) => x
@@ -81,9 +79,13 @@ object App {
       i = lines(1).toInt
       j = lines(2).toInt
       loadedBoard
-    } else {
+    } else if (currentBoard.gameBoard.length == 1) {
+      //todo: it can be handled better
+      scala.io.StdIn.readLine("There is no saved file! Please exit and run the game again")
       currentBoard
-    }
+
+    } else
+      currentBoard
 
   }
 

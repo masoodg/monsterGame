@@ -6,8 +6,8 @@ package com.mycode
   */
 class Board(val rows: Int = 3, val cols: Int = 3, empty: Boolean = false) {
 
-  var xPosition: Int = 0
-  var yPosition: Int = 0
+  private var xPosition: Int = 0
+  private var yPosition: Int = 0
 
   def loadBoard(gameBoard: Board, loadedData: Array[String]): Board = {
 
