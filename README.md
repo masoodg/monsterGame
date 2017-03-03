@@ -6,6 +6,7 @@ There are different Monsters in the board e.g. Small and Big Monsters.
 The power of Small monster is 6 (score) and the power of Big monster is 20 (score).   
 Winning against Small or Big monsters give you 4 and 10 scores respectively however, loosing costs 1 and 3 scores.   
 Use the bonus to get free score!   
+You can Save, Load the game anytime and also trace the path of your moves.
 
 ** How to use it:
 
